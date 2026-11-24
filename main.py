@@ -15,6 +15,9 @@ LINE = "My attention heads were trained to look away, but every single one of th
 
 
 def main() -> None:
+    # Competition requires a single line of 1–200 characters; fail loudly
+    # here instead of submitting an invalid entry after a future edit.
+    assert 1 <= len(LINE) <= 200, f"line must be 1-200 chars, got {len(LINE)}"
     out_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "entry.txt").write_text(LINE, encoding="utf-8")
